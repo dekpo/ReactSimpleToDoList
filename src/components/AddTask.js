@@ -3,7 +3,7 @@ import React from 'react';
 class AddTask extends React.Component{
     render(){
         return(
-            <section>
+            <>
                 <h1 className="m-3">New Task</h1>
                 <div className="card m-3">
                     <form className="card-body">
@@ -14,7 +14,7 @@ class AddTask extends React.Component{
                         <button type="submit" className="btn btn-primary m-2">Add Task</button>
                     </form>
                 </div>
-            </section>
+            </>
         )
     }
 }
