@@ -2,17 +2,22 @@ import React from 'react';
 import ToDoList from './ToDoList';
 import NavBar from './NavBar';
 import AddTask from './AddTask';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component {
-    render() {
-      return (
-        <section>
-          <ToDoList />
-          <AddTask />
+  render() {
+    return (
+      <section>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/add-task" component={AddTask} />
+            <Route path="/" component={ToDoList} />
+          </Switch>
           <NavBar />
-        </section>
-      )
-    }
+        </BrowserRouter>
+      </section>
+    )
   }
+}
 
-  export default App
+export default App
