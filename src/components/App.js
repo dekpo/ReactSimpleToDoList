@@ -9,7 +9,7 @@ import uniqid from 'uniqid';
 class App extends React.Component {
 
   state = {
-    tasks: data
+    tasks: localStorage.getItem('data') ? JSON.parse( localStorage.getItem('data') ) : data
   }
 
   onToggleCompleted = (taskId) => {
@@ -21,6 +21,7 @@ class App extends React.Component {
         return task.id === taskId ? taskToUpdate : task
       })
     ))
+    /* localStorage.setItem('data',JSON.stringify(this.state.tasks)); */
   }
 
   onAddTask = (newTaskName) => {
@@ -34,6 +35,11 @@ class App extends React.Component {
     this.setState(prevState => ({
       tasks: [...prevState.tasks, newTask]
     }))
+
+    /* setTimeout( () => {
+      localStorage.setItem('data',JSON.stringify(this.state.tasks))
+    },500) */
+
   }
 
   onDeleteCompleted = () => {
@@ -43,9 +49,35 @@ class App extends React.Component {
         tasks: newState
       }
     })
+
+    /* setTimeout( () => {
+      localStorage.setItem('data',JSON.stringify(this.state.tasks))
+    },500) */
+  }
+
+  componentDidMount = () => {
+    console.log('Hello from componentDidMount');
+    return true
+  }
+
+  shouldComponentUpdate = () => {
+    console.log('Hello from shouldComponentUpdate');
+    return true
+  }
+
+  componentDidUpdate = () => {
+    localStorage.setItem('data',JSON.stringify(this.state.tasks));
+    console.log('Hello from componentDidUpdate');
+    return true
+  }
+
+  componentWillUnmount = () => {
+    console.log('Hello from componentWillUnmount');
+    return true
   }
 
   render() {
+    console.log('Hello from render');
     return (
       <section>
         <BrowserRouter>
